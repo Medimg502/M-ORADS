@@ -1,7 +1,3 @@
-<div align="center"><img src="assets/logo.png" width="350"></div>
-<img src="assets/demo.png" >
-
-
 
 ## Cite YOLOX
 If you use YOLOX in your research, please cite our work by using the following BibTeX entry:
