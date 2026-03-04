@@ -1,22 +1,34 @@
 import os
 import numpy as np
-import cv2
 import torch
 import pandas as pd
-import shutil
-import csv
 from torchvision import transforms
 import torch.optim as optim
 import torch.nn as nn
 from PIL import Image
-import random
-import math
-from collections import Counter
 from torch.utils.data import DataLoader
 import torch.utils.data as Data
 from torchvision.models import vit_b_16, ViT_B_16_Weights
+import math
 
 
+
+class SelfAttention(nn.Module):
+    def __init__(self, feature_dim):
+        super(SelfAttention, self).__init__()
+        self.query = nn.Linear(feature_dim, feature_dim)
+        self.key = nn.Linear(feature_dim, feature_dim)
+        self.value = nn.Linear(feature_dim, feature_dim)
+        self.softmax = nn.Softmax(dim=-2)  
+
+    def forward(self, x):
+        Q = self.query(x)
+        K = self.key(x)
+        V = self.value(x)
+        attention_scores = torch.matmul(Q, K.transpose(-2, -1)) / math.sqrt(Q.size(-1))
+        attention_weights = self.softmax(attention_scores)
+        weighted_features = torch.matmul(attention_weights, V)
+        return weighted_features, attention_weights
 
 
 class Modifiedvit(nn.Module):
@@ -45,6 +57,12 @@ class Modifiedvit(nn.Module):
         else:
             x1, x2, x3, x4, x5, task1, task2, task3, task4, task5 = self.vitb2(x)
         return x1, x2, x3, x4, x5, task1, task2, task3, task4, task5
+    
+
+
+if __name__ == "__main__":
+    model = Modifiedvit()
+    print(model)
 
 
 
