@@ -94,24 +94,3 @@ class Modifiedvit(nn.Module):
 if __name__ == "__main__":
     model = Modifiedvit()
     print(model)
-
-
-
-
-  
-
-
-
-
-
-
-        
-    
-
-
-
-
-
-
-       
-  
