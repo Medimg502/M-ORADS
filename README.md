@@ -1,7 +1,5 @@
 
-## Cite YOLOX
-If you use YOLOX in your research, please cite our work by using the following BibTeX entry:
-
+## Citation
 ```latex
  @article{yolox2021,
   title={YOLOX: Exceeding YOLO Series in 2021},
